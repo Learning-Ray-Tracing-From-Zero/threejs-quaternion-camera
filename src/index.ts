@@ -21,16 +21,14 @@ let canvas = renderer.domElement;
 	const h = Math.min(window.innerHeight, 864);
 
     canvas.setAttribute("id", "c");
-    canvas.style.position = 'absolute';               // 設定為絕對定位
-    canvas.style.top = '50%';                         // 頂部邊緣位於父元素（body/viewport）的 50% 位置
-    canvas.style.left = '50%';                        // 左側邊緣位於父元素的 50% 位置
-    canvas.style.transform = 'translate(-50%, -50%)'; // 使用 transform 將元素自身向左和向上平移其自身寬高的一半，從而實現精確居中
+    canvas.style.position = 'absolute';
+    canvas.style.top = '50%';
+    canvas.style.left = '50%';
+    canvas.style.transform = 'translate(-50%, -50%)';
 
-    // 額外的樣式：移除 body 的預設 margin 和 overflow
     document.body.style.margin = '0';
     document.body.style.overflow = 'hidden';
-    // 設定 body 的高度確保垂直居中有效
-    document.body.style.minHeight = '100vh'; // 或者 height = '100vh'
+    document.body.style.minHeight = '100vh';
 
     renderer.setSize(w, h);
     renderer.setPixelRatio(window.devicePixelRatio);
@@ -141,12 +139,12 @@ function project_on_trackball(touch_x: number, touch_y: number): THREE.Vector3 {
     return mouse_on_ball;
 }
 
-function rotate_matrix(rotateStart: THREE.Vector3, rotateEnd: THREE.Vector3): THREE.Quaternion {
+function rotate_matrix(rotate_start: THREE.Vector3, rotate_end: THREE.Vector3): THREE.Quaternion {
     const axis = new THREE.Vector3();
     const quaternion = new THREE.Quaternion();
-    const angle = Math.acos(rotateStart.dot(rotateEnd) / rotateStart.length() / rotateEnd.length());
+    const angle = Math.acos(rotate_start.dot(rotate_end) / rotate_start.length() / rotate_end.length());
     if (angle) {
-        axis.crossVectors(rotateStart, rotateEnd).normalize();
+        axis.crossVectors(rotate_start, rotate_end).normalize();
         quaternion.setFromAxisAngle(axis, angle * rotation_speed);
     }
 
