@@ -36,7 +36,6 @@ let canvas = renderer.domElement;
 }
 
 // Add events listen
-let mouse_down = false;
 let rotate_start_point = new THREE.Vector3(0, 0, 1);
 let rotate_end_point = new THREE.Vector3(0, 0, 1);
 
@@ -65,7 +64,6 @@ function on_mouse_down(event: MouseEvent) {
     // Prevent the default handling behavior of the browser for the current event
     event.preventDefault();
 
-    mouse_down = true;
     start_point = {
         x: event.clientX,
         y: event.clientY
@@ -103,8 +101,6 @@ function on_mouse_up(event: MouseEvent) {
         delta_x = event.clientX - start_point.x;
         delta_y = event.clientY - start_point.y;
     };
-
-    mouse_down = false;
 
     canvas.removeEventListener('mousemove', on_mouse_move);
     canvas.removeEventListener('mouseup', on_mouse_up);
